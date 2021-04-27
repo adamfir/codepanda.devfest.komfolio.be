@@ -16,3 +16,6 @@
 	```
 	npm run start
 	```
+
+### Extra
+Check package.json, you can modify `package.json` and make your own script. For example, we add `debug` script to enable hot reload using [nodemon](https://www.npmjs.com/package/nodemon) (PS. we can install nodemon globally)
