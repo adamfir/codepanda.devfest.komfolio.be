@@ -25,3 +25,11 @@ Sequelize is powerful [ORM](https://www.codepolitan.com/mengapa-menggunakan-orm-
 ```
 npm install --save sequelize mysql2
 ```
+We also use `sequelize-cli` to implement `sequelize migration`. To install it globally, use command bellow. For more documentation you can access [here](https://sequelize.org/master/manual/migrations.html).
+```
+npm install -g sequelize-cli
+```
+# Install GraphQL
+In this project we use GraphQL as transport layer instead of ordinary RESTful API. You can learn more about GraphQL on their [official site](https://graphql.org/). 
+We will use GraphQL alongside express framework. You can found the basic example from official site [here](https://graphql.org/graphql-js/running-an-express-graphql-server/)
+

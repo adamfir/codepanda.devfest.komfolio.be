@@ -10,6 +10,8 @@ var usersRouter = require('./src/routes/users');
 
 var app = express();
 
+const graphqlSchema = require("./src/graphql");
+app.use('/graphql', graphqlSchema);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
