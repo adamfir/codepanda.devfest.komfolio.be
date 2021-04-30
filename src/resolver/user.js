@@ -47,10 +47,26 @@ exports.UpdateUser = async function (parent, args, context, info) {
 
   // execute update
   try {
-    await db["user"].update(user, filter);
+    await user.save();
     return user;
   } catch (error) {
     console.log('[UpdateUser] ERROR :>> update()', error);
     return new Error("unknown error", error.message);
+  }
+}
+
+exports.GetUser = async function(parent, args, context, info) {
+  const filter = {
+    where: {
+      ID: args.ID
+    }
+  }
+
+  try {
+    const user = await db["user"].findOne(filter);
+    return user;
+  } catch (error) {
+    console.log('[GetUser] ERROR findOne(filter) :>> ', error.message);
+    return new Error("unknown error");
   }
 }

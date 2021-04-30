@@ -1,3 +1,4 @@
+const { db } = require("../models");
 const userResolver = require("../resolver/user");
 module.exports = {
   schema: `
@@ -28,9 +29,13 @@ module.exports = {
       Address: String
       ProfileImage: String
       BackgroundImage: String
+      Skills: [Skill]
     }
   `,
   resolvers: {
+    Query: {
+      User: userResolver.GetUser,
+    },
     Mutation: {
       User: userResolver.UpdateUser,
     },
@@ -52,6 +57,21 @@ module.exports = {
           return age - 1;
         }
         return age;
+      },
+      Skills: async function(parent, args, context, info) {
+        const filter = {
+          where: {
+            UserID: parent.ID,
+          }
+        }
+
+        try {
+          const skills = await db["skill"].findAll(filter);
+          return skills;
+        } catch (error) {
+          console.log('[User->Skills] ERROR findAll(filter) :>> ', error.message);
+          return null;
+        }
       }
     }
   }
