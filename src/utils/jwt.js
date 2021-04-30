@@ -25,3 +25,17 @@ exports.GenerateToken = function(payload) {
 exports.VerifyToken = function(token) {
   return jwt.verify(token, secret);
 }
+
+exports.Authenticate = function(req, res, next) {
+  const token = req.headers["authorization"];
+  try {
+    const payload = jwt.verify(token, secret);
+    if (payload) {
+      req.auth = payload;
+      return next();
+    }
+  } catch (error) {
+    console.log('[Authenticate] ERROR :>> ', error.message);
+  }
+  res.status(401).json({message: "unauthorized"});
+}
