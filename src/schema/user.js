@@ -30,6 +30,7 @@ module.exports = {
       ProfileImage: String
       BackgroundImage: String
       Skills: [Skill]
+      Educations: [Education]
     }
   `,
   resolvers: {
@@ -70,6 +71,21 @@ module.exports = {
           return skills;
         } catch (error) {
           console.log('[User->Skills] ERROR findAll(filter) :>> ', error.message);
+          return null;
+        }
+      },
+      Educations: async function(parent, args, context, info) {
+        const filter = {
+          where: {
+            UserID: parent.ID,
+          }
+        }
+
+        try {
+          const Educations = await db["education"].findAll(filter);
+          return Educations;
+        } catch (error) {
+          console.log('[User->Educations] ERROR findAll(filter) :>> ', error.message);
           return null;
         }
       }

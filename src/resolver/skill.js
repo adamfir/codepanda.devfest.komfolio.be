@@ -45,7 +45,8 @@ exports.UpdateSkill = async function(parent, args, context, info) {
   // filter by id
   const filter = {
     where: {
-      ID: args.ID
+      ID: args.ID,
+      UserID: context.UserID,
     },
   }
 
