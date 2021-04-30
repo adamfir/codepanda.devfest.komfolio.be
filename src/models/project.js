@@ -1,56 +1,53 @@
 module.exports = (sequelize, DataTypes) => {
   const schema = sequelize.define(
-    "user",
+    "project",
     {
       ID: {
         type: DataTypes.UUID,
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4,
       },
-      Name: {
+      Title: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
-      Email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      Password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      Phone: {
-        type: DataTypes.STRING,
-      },
-      Line: {
-        type: DataTypes.STRING,
       },
       Description: {
         type: DataTypes.TEXT,
+        allowNull: false,
       },
-      BirthDate: {
+      Position: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      ShowcaseURL: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      StartDate: {
         type: DataTypes.DATE,
       },
-      Address: {
-        type: DataTypes.TEXT,
+      EndDate: {
+        type: DataTypes.DATE,
       },
-      ProfileImage: {
-        type: DataTypes.TEXT,
-      },
-      BackgroundImage: {
-        type: DataTypes.TEXT,
-      }
     },
     {
-      tableName: "users",
+      tableName: "projects",
       createdAt: 'CreatedAt',
       updatedAt: 'UpdatedAt',
       name: {
-        singular: "user",
-        plural: "users",
+        singular: "project",
+        plural: "projects",
       },
     }
   )
+
+  schema.associate = (models) => {
+    models.project.belongsTo(models.user, {
+      onDelete: "CASCADE",
+      foreignKey: "UserID",
+      targetKey: "ID",
+    });
+  };
 
   return schema;
 }
