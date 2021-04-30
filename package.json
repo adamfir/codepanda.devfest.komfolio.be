@@ -7,6 +7,7 @@
     "debug": "nodemon ./bin/www"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
@@ -15,6 +16,7 @@
     "graphql": "^15.5.0",
     "graphql-tools": "^7.0.4",
     "http-errors": "~1.6.3",
+    "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "morgan": "~1.9.1",
     "mysql2": "^2.2.5",

@@ -25,6 +25,7 @@ module.exports = {
         Email: {
           type: DataTypes.STRING,
           allowNull: false,
+          unique: true,
         },
         Password: {
           type: DataTypes.STRING,
@@ -32,6 +33,7 @@ module.exports = {
         },
         Phone: {
           type: DataTypes.STRING,
+          unique: true,
         },
         Line: {
           type: DataTypes.STRING,

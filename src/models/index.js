@@ -1,6 +1,7 @@
-import Sequelize, { DataTypes } from 'sequelize';
+const Sequelize = require('sequelize');
+const { DataTypes } = require('sequelize');
 const NODE_ENV = process.env.NODE_ENV
-import { PROD, STG, DEV } from '../../config/sequelize';
+const { PROD, STG, DEV } = require('../../config/sequelize');
 
 // chose database config based on environment variable
 let dbConfig;
@@ -16,6 +17,10 @@ if (NODE_ENV == "PROD") {
 const sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, dbConfig);
 const models = [
   require("./user")(sequelize, DataTypes),
+  require("./education")(sequelize, DataTypes),
+  require("./experience")(sequelize, DataTypes),
+  require("./skill")(sequelize, DataTypes),
+  require("./project")(sequelize, DataTypes),
 ]
 
 const db = {}
@@ -35,4 +40,4 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-export default db;
+exports.db = db;
