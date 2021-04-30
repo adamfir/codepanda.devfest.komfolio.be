@@ -7,14 +7,14 @@ module.exports = graphqlHTTP((req) => {
   const context = {};
   if (req.header("Authorization")) {
     context.token = req.header("Authorization");
-    const token = context.token.split(" ")[1];
+    const token = context.token;
     let parsedToken = {};
     if (token) {
       try {
         parsedToken = JSON.parse(
           Buffer.from(token.split(".")[1], "base64").toString()
         );
-        context.userId = parsedToken.id;
+        context.UserID = parsedToken.UserID;
       } catch {}
     }
   }
